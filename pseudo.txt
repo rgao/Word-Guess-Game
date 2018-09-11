@@ -1,0 +1,38 @@
+<script>
+
+Declare and initialize all variables (wins, guesses remaining, and array of guessed letters)
+    *in the html document, give an id to each of their values so they can be modified by the script via getelementbyid
+
+Make an array consisting of all alphabetical letters
+Make an array as a pool for the computer to choose a word from
+
+Computer generates a random word by choosing from the array of options, determined by the random math method and length of the array
+Make a bar with number of underlines equal to length of chosen word
+
+User inputs a key to generate a event:
+    reset any messages on screen (from winning, losing, etc.)
+    check to see if key input is a letter (with a loop and if statement):
+        tells user of invalid input if input not a letter
+    if all letters match the random word:
+        user wins and increment wins by +1; game resets
+        -win announcement
+        -reset guesses remaining and array of guessed letter
+        -computer chooses a random word again
+    else:
+        if input is a letter in the random word:
+            add letter to bar of revealed letters
+        else:
+            decrease guesses left by 1,
+            if no guesses left:
+                user loses and game resets
+                -loss announcement
+                -reset guesses remaining and array of guessed letter
+                -computer chooses a random word again
+            else:
+                add letter to list of guessed letters
+
+</script>
+
+Need to debug:
+    -for loop scope for iterating over an array to check validity
+    -replacing instead of appending to underline with correct guesses
