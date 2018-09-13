@@ -34,6 +34,5 @@ User inputs a key to generate a event:
 </script>
 
 debug priority:
-    -order guesses / replacing instead of appending to underline with correct guesses
     -repeated guesses (for both incorrect and correct guess)
     -win/loss screen?

@@ -48,39 +48,34 @@ document.addEventListener("DOMContentLoaded", function(){
             document.getElementById("announcement").textContent = "Please input an alphabetical letter.";
 
         } else {
-            // correct guessing a letter: replaces the appropriate underline with the correct guess
-            var correct = false;
-            for (j = 0; j < computerGuess.length; j++) { 
-                if (event.key === computerGuess[j]) {
-                    correct_guesses[j] = event.key;
-                    document.getElementById("bar").textContent = correct_guesses.join(" ");
-                    correct = true;
-                    console.log(correct_guesses.toString());
+            // checks if input is a duplicate (already guessed)
+            var duplicate = false
+            for (var d = 0; d < guessed_letters.length; d++) {
+                if (event.key == guessed_letters[d]) {
+                duplicate = true;
                 };
             };
 
-            // win condition and game reset
-            if (correct_guesses.join("").toString() === computerGuess) {
-                document.getElementById("announcement").textContent = "Congratulations, You Win! Press a letter to play again";
-                n_wins += 1;
-                document.getElementById("wins").textContent = n_wins;
-                guessed_letters = [];
-                document.getElementById("already_guessed").textContent = guessed_letters.join(" ");
-                computerGuess = planets[Math.floor(Math.random() * planets.length)];
-                n_guesses = 2*computerGuess.length;
-                document.getElementById("guesses").textContent = n_guesses;
-                correct_guesses = [];
-                bar_length(computerGuess);
-            };
+            if (duplicate === true) {
+                document.getElementById("announcement").textContent = "You've already guessed this letter. Please choose a different letter.";
+            } else {
+                // correct guessing a letter: replaces the appropriate underline with the correct guess
+                var correct = false;
+                for (j = 0; j < computerGuess.length; j++) { 
+                    if (event.key === computerGuess[j]) {
+                        correct_guesses[j] = event.key;
+                        document.getElementById("bar").textContent = correct_guesses.join(" ");
+                        correct = true;
+                        guessed_letters.push(event.key);
+                        document.getElementById("already_guessed").textContent = guessed_letters.join(" ");
+                    };
+                };
 
-            // incorrect guesses
-            if (correct === false) {
-                n_guesses -= 1;
-                document.getElementById("guesses").textContent = n_guesses;
-                if (n_guesses === 0) {
-
-                    // losing and game resetting
-                    document.getElementById("announcement").textContent = "You lose! Press a letter to play again.";
+                // win condition and game reset
+                if (correct_guesses.join("").toString() === computerGuess) {
+                    document.getElementById("announcement").textContent = "Congratulations, You Win! Press a letter to play again";
+                    n_wins += 1;
+                    document.getElementById("wins").textContent = n_wins;
                     guessed_letters = [];
                     document.getElementById("already_guessed").textContent = guessed_letters.join(" ");
                     computerGuess = planets[Math.floor(Math.random() * planets.length)];
@@ -88,11 +83,29 @@ document.addEventListener("DOMContentLoaded", function(){
                     document.getElementById("guesses").textContent = n_guesses;
                     correct_guesses = [];
                     bar_length(computerGuess);
+                };
 
-                } else {
-                    // standard incorrect guess; adds to guessed letters list
-                    guessed_letters.push(event.key);
-                    document.getElementById("already_guessed").textContent = guessed_letters.join(" ");
+                // incorrect guesses
+                if (correct === false) {
+                    n_guesses -= 1;
+                    document.getElementById("guesses").textContent = n_guesses;
+                    if (n_guesses === 0) {
+
+                        // losing and game resetting
+                        document.getElementById("announcement").textContent = "You lose! Press a letter to play again.";
+                        guessed_letters = [];
+                        document.getElementById("already_guessed").textContent = guessed_letters.join(" ");
+                        computerGuess = planets[Math.floor(Math.random() * planets.length)];
+                        n_guesses = 2*computerGuess.length;
+                        document.getElementById("guesses").textContent = n_guesses;
+                        correct_guesses = [];
+                        bar_length(computerGuess);
+
+                    } else {
+                        // standard incorrect guess; adds to guessed letters list
+                        guessed_letters.push(event.key);
+                        document.getElementById("already_guessed").textContent = guessed_letters.join(" ");
+                    };
                 };
             };
         };
