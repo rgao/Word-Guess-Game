@@ -1,4 +1,33 @@
 body {
     background-image: url(../images/bigearth.jpg);
     color: #ffffff;
+};
+
+/* #empty-row {
+    height: 100px;
+};
+
+#title {
+    color: #FFD700;
+} */
+
+p {
+    font-size: 24px;
 }
+
+#announcement, #number_guesses {
+    color: lightskyblue
+}
+
+#win {
+    color: green;
+}
+
+#bar {
+    font-size: 48px;
+}
+
+#guessed_letters {
+    color: orangered;
+}
+

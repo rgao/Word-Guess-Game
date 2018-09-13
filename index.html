@@ -4,29 +4,52 @@
         <meta charset UTF-8>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Space Rocks</title>
+        <title>Space Balls</title>
 
         <link rel="icon" type="image/png" href="assets/images/planet.png">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     </head>
     <body>
-        <header>
-            <h1>The Solar System</h1>
-        </header>
 
-        <section>
-            <p id="announcement">Press any key to get started!</p>
+        <!-- looping background audio -->
+        <!-- <audio loop>
+            <source src="assets/katsura.mp3">
+        </audio> -->
 
-            <p>Wins: <span id="wins"></span></p>
+        <!-- bootstrap container -->
+        <div class="container-fluid">
 
-            <p id="bar"></p>
+            <!-- divide the page into two primary columns -->
+            <div class="row" style="border: 2px solid yellow">
 
-            <p>Number of Guesses Remaining: <span id="guesses"></span></p>
+                <!-- first column is an image corresponding to a correctly guessed word -->
+                <div class="col-4" style="border: 2px solid green">
+                    image goes here
+                </div>
 
-            <p>Letters Already Guessed: <span id="already_guessed"></span></p>
-        </section>
+                <!-- 2nd column will be the main game -->
+                <div class="col-8">
+                    <div class="row" id="empty-row" style="border: 2px solid orange"></div>
 
+                    <header class="row" id="title" style="border: 2px solid blue">
+                        <h1 class="mx-auto">THE SOLAR SYSTEM</h1>
+                    </header>
+
+                    
+                    <h2 class="row justify-content-center my-5" id="announcement">Press any key to get started!</h2>
+
+                    <p class="row justify-content-center my-5" id="win">Wins: <span id="wins"></span></p>
+
+                    <p class="row justify-content-center my-5 text-uppercase" id="bar"></p>
+
+                    <p class="row justify-content-center my-5" id="number_guesses">Number of Guesses Remaining: <span id="guesses"></span></p>
+
+                    <p class="row justify-content-center" id="guessed_letters">Letters Already Guessed: <span class="text-uppercase" id="already_guessed"></span></p>
+                  
+                </div>
+            </div>
+        </div>
         <script type="text/javascript" src="assets/javascript/game.js"></script>
     </body>
 </html>

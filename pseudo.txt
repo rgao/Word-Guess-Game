@@ -33,6 +33,9 @@ User inputs a key to generate a event:
 
 </script>
 
-debug priority:
-    -repeated guesses (for both incorrect and correct guess)
-    -win/loss screen?
+bugs to squash and stuff to do:
+    -text spacing and color and font
+    -footer
+    -audio
+    -end game scenario
+    -images & flavor text

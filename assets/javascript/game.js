@@ -1,12 +1,17 @@
 document.addEventListener("DOMContentLoaded", function(){
 
+    var audio = new Audio('assets/katsura.mp3');
+    audio.play();
+
     // declare and initialize pool of inputs and computer options
     var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    var planets = ["mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune", "ceres", "pluto", "eris", 
-        "ganymede", "io", "europa", "enceladus", "titan"];
+    var planetary_objects = ["mercury", "venus", "earth", "moon", "mars", "ceres", "jupiter", "ganymede", "io", "europa", "callisto", 
+    "saturn", "titan", "enceladus", "uranus", "miranda", "neptune", "triton", "pluto", "eris", "haumea", "makemake"];
 
     // computer chooses a random elements from the planets array
-    var computerGuess = planets[Math.floor(Math.random() * planets.length)];
+
+    var rand_index = Math.floor(Math.random() * planetary_objects.length)
+    var computerGuess = planetary_objects[rand_index];
     console.log(computerGuess);
 
     // declare and initialize counters
@@ -87,12 +92,12 @@ document.addEventListener("DOMContentLoaded", function(){
 
                 // win condition and game reset
                 if (correct_guesses.join("").toString() === computerGuess) {
-                    document.getElementById("announcement").textContent = "Congratulations, You Win! Press a letter to play again";
+                    document.getElementById("announcement").textContent = "Congratulations, You Win! Press a letter to play again.";
                     n_wins += 1;
                     document.getElementById("wins").textContent = n_wins;
                     guessed_letters = [];
                     document.getElementById("already_guessed").textContent = guessed_letters.join(" ");
-                    computerGuess = planets[Math.floor(Math.random() * planets.length)];
+                    computerGuess = planetary_objects[rand_index];
                     n_guesses = 2*computerGuess.length;
                     document.getElementById("guesses").textContent = n_guesses;
                     correct_guesses = [];
@@ -109,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function(){
                         document.getElementById("announcement").textContent = "You lose! Press a letter to play again.";
                         guessed_letters = [];
                         document.getElementById("already_guessed").textContent = guessed_letters.join(" ");
-                        computerGuess = planets[Math.floor(Math.random() * planets.length)];
+                        computerGuess = planetary_objects[rand_index];
                         n_guesses = 2*computerGuess.length;
                         document.getElementById("guesses").textContent = n_guesses;
                         correct_guesses = [];
