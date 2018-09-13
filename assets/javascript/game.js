@@ -55,18 +55,32 @@ document.addEventListener("DOMContentLoaded", function(){
                 duplicate = true;
                 };
             };
-
+            
+            // alert if letter already guessed
             if (duplicate === true) {
                 document.getElementById("announcement").textContent = "You've already guessed this letter. Please choose a different letter.";
+            
             } else {
                 // correct guessing a letter: replaces the appropriate underline with the correct guess
                 var correct = false;
-                for (j = 0; j < computerGuess.length; j++) { 
+                for (var j = 0; j < computerGuess.length; j++) { 
                     if (event.key === computerGuess[j]) {
+                        correct = true;
                         correct_guesses[j] = event.key;
                         document.getElementById("bar").textContent = correct_guesses.join(" ");
-                        correct = true;
-                        guessed_letters.push(event.key);
+
+                        // checks each correctly guessed letter for multiple appearances
+                        multiple_letter = false
+                        for (var g in guessed_letters) {
+                            if (event.key === guessed_letters[g]) {
+                                multiple_letter = true
+                            };
+                        };
+
+                        // adds correctly guessed letter to guessed letters array only if it's not already there
+                        if (multiple_letter === false) {
+                            guessed_letters.push(event.key);
+                        };
                         document.getElementById("already_guessed").textContent = guessed_letters.join(" ");
                     };
                 };
