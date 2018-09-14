@@ -13,26 +13,27 @@
     <body>
 
         <!-- looping background audio -->
-        <!-- <audio loop>
-            <source src="assets/katsura.mp3">
-        </audio> -->
+        <audio id="audio" autoplay loop src="assets/katsura.mp3"></audio>
 
         <!-- bootstrap container -->
-        <div class="container-fluid">
+        <div class="container-fluid mb-5">
 
             <!-- divide the page into two primary columns -->
-            <div class="row" style="border: 2px solid yellow">
+            <div class="row">
 
                 <!-- first column is an image corresponding to a correctly guessed word -->
-                <div class="col-4" style="border: 2px solid green">
-                    image goes here
+                <div class="col-12 col-sm-3 col-lg-2 px-0" id="pic">
                 </div>
 
-                <!-- 2nd column will be the main game -->
-                <div class="col-8">
-                    <div class="row" id="empty-row" style="border: 2px solid orange"></div>
+                <!-- empty column -->
+                <div class="col-12 col-sm-2 col-lg-3" id="funfact"></div>
 
-                    <header class="row" id="title" style="border: 2px solid blue">
+                <!-- 2nd column will be the main game -->
+                <div class="col-12 col-sm-7">
+                    <div class="row" id="empty-row"></div>
+
+                    <div class="main-content">
+                    <header class="row">
                         <h1 class="mx-auto">THE SOLAR SYSTEM</h1>
                     </header>
 
@@ -46,10 +47,17 @@
                     <p class="row justify-content-center my-5" id="number_guesses">Number of Guesses Remaining: <span id="guesses"></span></p>
 
                     <p class="row justify-content-center" id="guessed_letters">Letters Already Guessed: <span class="text-uppercase" id="already_guessed"></span></p>
-                  
+                    </div>
                 </div>
             </div>
         </div>
+
+        <footer class="footer fixed-bottom">
+            <p class="copyright text-center pt-2">
+                Copyright &copy; 2018
+            </p>
+        </footer>
+
         <script type="text/javascript" src="assets/javascript/game.js"></script>
     </body>
 </html>

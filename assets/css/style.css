@@ -1,18 +1,35 @@
 body {
     background-image: url(../images/bigearth.jpg);
     color: #ffffff;
-};
+}
 
-/* #empty-row {
-    height: 100px;
-};
+#pic {
+    max-width: none;
+}
 
-#title {
+#empty-row {
+    height: 75px;
+}
+
+#pic {
+    text-align: center;
+}
+
+.main-content {
+    border: 3px double gold;
+    font-family: Impact;
+}
+
+h1 {
     color: #FFD700;
-} */
+}
 
-p {
+#win, #bar, #number_guesses, #guessed_letters {
     font-size: 24px;
+}
+
+span {
+    margin-left: 5px;
 }
 
 #announcement, #number_guesses {
@@ -20,7 +37,7 @@ p {
 }
 
 #win {
-    color: green;
+    color: lightgreen;
 }
 
 #bar {
@@ -29,5 +46,12 @@ p {
 
 #guessed_letters {
     color: orangered;
+}
+
+footer {
+    color: #ffffff;
+    background-color: #666666;
+    height: 40px;
+    font-size: 12px;
 }
 

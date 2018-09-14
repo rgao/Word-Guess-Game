@@ -32,10 +32,3 @@ User inputs a key to generate a event:
                 add letter to list of guessed letters
 
 </script>
-
-bugs to squash and stuff to do:
-    -text spacing and color and font
-    -footer
-    -audio
-    -end game scenario
-    -images & flavor text

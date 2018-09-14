@@ -1,18 +1,51 @@
+// *****ATTENTION TAs/Grader*****
+
+// ***NOTE: audio is supposed to play when web page loads. if it doesn't work in chrome, go to chrome://flags/#autoplay-policy and 
+// change user settings to not require gesture to autoplay audio
+
+// ***NOTE: this code uses the element.remove() method, which is supported by Chrome but may not be supported by some other browsers
+
+// Game is most visually appealing at full browser width
+
 document.addEventListener("DOMContentLoaded", function(){
 
-    var audio = new Audio('assets/katsura.mp3');
+    // plays background audio on page load
+    var audio = document.getElementById("audio");
     audio.play();
 
-    // declare and initialize pool of inputs and computer options
+    // checks to see if it's first time playing
+    played = false;
+
+    // declare and initialize arrays
     var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     var planetary_objects = ["mercury", "venus", "earth", "moon", "mars", "ceres", "jupiter", "ganymede", "io", "europa", "callisto", 
     "saturn", "titan", "enceladus", "uranus", "miranda", "neptune", "triton", "pluto", "eris", "haumea", "makemake"];
-
+    
     // computer chooses a random elements from the planets array
 
     var rand_index = Math.floor(Math.random() * planetary_objects.length)
     var computerGuess = planetary_objects[rand_index];
-    console.log(computerGuess);
+
+    // creates an image with the name of the object when winning/losing
+    function create_divs(obj) {
+
+        // creates an image div with the appropriate image 
+        newimg = document.createElement("img");
+        newimg.setAttribute("id", "picture");
+        newimg.src = "assets/images/" + obj + ".png";
+        newimg.style.width = "100%";
+        document.getElementById("pic").appendChild(newimg);
+
+        // name of chosen object
+        newname = document.createElement("namediv");
+        newimg.setAttribute("id", "picname");
+        newname.textContent = obj;
+        newname.style.fontSize = "32px";
+        newname.style.fontFamily = "Impact"
+        newname.style.color = "lightgreen"
+        newname.style.textTransform = "capitalize";
+        document.getElementById("pic").appendChild(newname);
+    };
 
     // declare and initialize counters
     var n_wins = 0;
@@ -37,8 +70,18 @@ document.addEventListener("DOMContentLoaded", function(){
     bar_length(computerGuess);
 
     document.onkeyup = function(event) {
+
+        // remove picture/text from previous win/loss
+        if (played === true) {
+        newimg.remove();
+        newname.remove();
+        };
+
         // default annoucement
+        document.getElementById("announcement").style.color = "lightskyblue";
         document.getElementById("announcement").textContent = "Which space ball is it?";
+
+        // remove picture/text from previous win/loss
 
         // checks for valid user input (letter)
         var letter = false;
@@ -92,12 +135,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
                 // win condition and game reset
                 if (correct_guesses.join("").toString() === computerGuess) {
-                    document.getElementById("announcement").textContent = "Congratulations, You Win! Press a letter to play again.";
+                    played = true
+                    document.getElementById("announcement").style.color = "lightgreen";
+                    document.getElementById("announcement").textContent = "Congratulations, You Win! Press a letter to continue.";
                     n_wins += 1;
                     document.getElementById("wins").textContent = n_wins;
                     guessed_letters = [];
                     document.getElementById("already_guessed").textContent = guessed_letters.join(" ");
-                    computerGuess = planetary_objects[rand_index];
+                    create_divs(computerGuess);
+                    computerGuess = planetary_objects[Math.floor(Math.random() * planetary_objects.length)];
                     n_guesses = 2*computerGuess.length;
                     document.getElementById("guesses").textContent = n_guesses;
                     correct_guesses = [];
@@ -111,10 +157,13 @@ document.addEventListener("DOMContentLoaded", function(){
                     if (n_guesses === 0) {
 
                         // losing and game resetting
-                        document.getElementById("announcement").textContent = "You lose! Press a letter to play again.";
+                        played = true
+                        document.getElementById("announcement").style.color = "orangered";
+                        document.getElementById("announcement").textContent = "You lose! Press a letter to continue.";
                         guessed_letters = [];
                         document.getElementById("already_guessed").textContent = guessed_letters.join(" ");
-                        computerGuess = planetary_objects[rand_index];
+                        create_divs(computerGuess);
+                        computerGuess = planetary_objects[Math.floor(Math.random() * planetary_objects.length)];
                         n_guesses = 2*computerGuess.length;
                         document.getElementById("guesses").textContent = n_guesses;
                         correct_guesses = [];
